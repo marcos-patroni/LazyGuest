@@ -30,7 +30,7 @@
         var dataObterToken = { buttonClicked: "4", err_flag: "", err_msg: "", info_flag: "4", info_msg: "0", redirect_url: "", username: "11.3", password: "11.3" };
         $http({
           url: 'https://1.1.1.1/login.html',
-          method: "GET",
+          method: "POST",
           data: dataObterToken,
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           transformRequest: function (obj) {
