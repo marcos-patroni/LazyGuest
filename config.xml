@@ -43,4 +43,5 @@
     <allow-intent href="itms:*"/>
     <allow-intent href="itms-apps:*"/>
   </platform>
+  <plugin name="com.megster.cordova.bluetoothserial" spec="0.2.2" source="pgb" />
 </widget>
