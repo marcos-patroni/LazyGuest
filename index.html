@@ -1,59 +1,20 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="format-detection" content="telephone=no" />
-  <meta name="msapplication-tap-highlight" content="no" />
-  <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-  <link rel="stylesheet" type="text/css" href="css/index.css" />
-  <title>LazyGuest</title>
-  <script type="text/javascript" src="cordova.js"></script>
-  <script type="text/javascript" src="js/angular.min.js"></script>
-</head>
-<body>
-  <div class="app" ng-app="meuApp" ng-controller="meuControle">
-    {{ retorno }}
-    <p/>
-    <button style="width:100%;height:100px;" ng-click="fechar()">Fechar</button>
-  </div>
-  <script type="text/javascript">
-      app.initialize();
-  </script>
-  <script type="text/javascript">
-
-    var appx = angular.module('meuApp', []);
-    appx.controller
-      ('meuControle', function ($scope, $http, $window)
-      {
-        $scope.retorno = 'Conectando...';
-        var dataObterToken = { buttonClicked: "4", err_flag: "", err_msg: "", info_flag: "4", info_msg: "0", redirect_url: "", username: "11.3", password: "11.3" };
-        $http({
-          url: 'https://1.1.1.1/login.html',
-          method: "POST",
-          data: dataObterToken,
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          transformRequest: function (obj) {
-            var str = [];
-            for (var p in obj)
-              str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-            return str.join("&");
-          }
-        }).success(function (data, status, headers, config) {
-          if (data.toLowerCase().indexOf('success') > -1)
-            $scope.retorno = "Sucesso";
-          else
-            $scope.retorno = 'Possivelmete já está conectado...';
-        }).error(function (data, status, headers, config) {
-          $scope.retorno = "Sem sinal. Favor entrar na rede WiFi antes de ativar o LazyGuest.";
-        });
-        $scope.fechar = function ()
-        {
-          navigator.app.exitApp();
-        }
-      }
-      )
-  </script>
-
-</body>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Bluetooth Count</title>
+    </head>
+    <body>
+        <h1>Bluetooth Counter</h1>
+        <div id="counter">...</div>
+        <div id="statusDiv"></div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+    </body>
 </html>
