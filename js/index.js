@@ -27,14 +27,14 @@ var app = {
         detailPage.hidden = true;
     },
     bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
+        //document.addEventListener('deviceready', this.onDeviceReady, false);
         refreshButton.addEventListener('touchstart', this.refreshDeviceList, false);
         sendButton.addEventListener('click', this.sendData, false);
         disconnectButton.addEventListener('touchstart', this.disconnect, false);
-        deviceList.addEventListener('touchstart', this.connect, false); // assume not scrolling
+        //deviceList.addEventListener('touchstart', this.connect, false); // assume not scrolling
     },
     onDeviceReady: function() {
-        app.refreshDeviceList();
+        //app.refreshDeviceList();
     },
     refreshDeviceList: function() {
         deviceList.innerHTML = ''; // empties the list
@@ -43,6 +43,7 @@ var app = {
         } else {
             ble.scan([bluefruit.serviceUUID], 5, app.onDiscoverDevice, app.onError);
         }
+		this.connect();
     },
     onDiscoverDevice: function(device) {
         var listItem = document.createElement('li'),
@@ -87,9 +88,9 @@ var app = {
 
     },
     onData: function(data) { // data received from Arduino
-		messageInput.value = bytesToString(data);
-        //resultDiv.innerHTML = resultDiv.innerHTML + "Received: " + bytesToString(data) + "<br/>";
-        //resultDiv.scrollTop = resultDiv.scrollHeight;
+		messageOutput.value = bytesToString(data);
+		if (messageInput.value == "x")
+			alert(bytesToString(data));
     },
     sendData: function(event) { // send data to Arduino
 
