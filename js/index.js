@@ -1,22 +1,4 @@
-// (c) 2014 Don Coleman
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
 
-/* global mainPage, deviceList, refreshButton */
-/* global detailPage, resultDiv, messageInput, sendButton, disconnectButton */
-/* global ble  */
-/* jshint browser: true , devel: true*/
-'use strict';
 
 // ASCII only
 function bytesToString(buffer) {
@@ -105,14 +87,13 @@ var app = {
 
     },
     onData: function(data) { // data received from Arduino
-        console.log(data);
-        resultDiv.innerHTML = resultDiv.innerHTML + "Received: " + bytesToString(data) + "<br/>";
-        resultDiv.scrollTop = resultDiv.scrollHeight;
+		messageInput.value = bytesToString(data);
+        //resultDiv.innerHTML = resultDiv.innerHTML + "Received: " + bytesToString(data) + "<br/>";
+        //resultDiv.scrollTop = resultDiv.scrollHeight;
     },
     sendData: function(event) { // send data to Arduino
 
         var success = function() {
-            console.log("success");
             resultDiv.innerHTML = resultDiv.innerHTML + "Sent: " + messageInput.value + "<br/>";
             resultDiv.scrollTop = resultDiv.scrollHeight;
         };
