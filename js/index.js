@@ -31,7 +31,7 @@ var app = {
         refreshButton.addEventListener('touchstart', this.refreshDeviceList, false);
         sendButton.addEventListener('click', this.sendData, false);
         disconnectButton.addEventListener('touchstart', this.disconnect, false);
-        //deviceList.addEventListener('touchstart', this.connect, false); // assume not scrolling
+        deviceList.addEventListener('touchstart', this.connect, false); // assume not scrolling
     },
     onDeviceReady: function() {
         //app.refreshDeviceList();
@@ -43,7 +43,6 @@ var app = {
         } else {
             ble.scan([bluefruit.serviceUUID], 5, app.onDiscoverDevice, app.onError);
         }
-		this.connect();
     },
     onDiscoverDevice: function(device) {
         var listItem = document.createElement('li'),
