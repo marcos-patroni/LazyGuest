@@ -56,20 +56,13 @@ var app = {
     },
     connect: function(e) {
 		alert('a');
-        var deviceId = e.target.dataset.deviceId,
-            onConnect = function() {
-                app.determineWriteType();
-
-                // subscribe for incoming data
-				alert('b');
-                ble.startNotification(deviceId, bluefruit.serviceUUID, bluefruit.rxCharacteristic, app.onData, app.onError);
-                sendButton.dataset.deviceId = deviceId;
-                disconnectButton.dataset.deviceId = deviceId;
-                resultDiv.innerHTML = "";
-                app.showDetailPage();
-            };
-
+		var deviceId = e.target.dataset.deviceId;
         ble.connect(deviceId, onConnect, app.onError);
+		alert('b');
+        ble.startNotification(deviceId, bluefruit.serviceUUID, bluefruit.rxCharacteristic, app.onData, app.onError);
+        sendButton.dataset.deviceId = deviceId;
+        disconnectButton.dataset.deviceId = deviceId;
+		app.writeWithoutResponse = true;
     },
     determineWriteType: function() {
         app.writeWithoutResponse = true;
