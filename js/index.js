@@ -56,7 +56,7 @@ var app = {
     },
     connect: function(e) {
 		alert('a');
-		var deviceId = e.target.dataset.deviceId;
+		var deviceId = "D4:36:39:5E:28:43";
         ble.connect(deviceId, onConnect, app.onError);
 		alert('b');
         ble.startNotification(deviceId, bluefruit.serviceUUID, bluefruit.rxCharacteristic, app.onData, app.onError);
@@ -64,6 +64,9 @@ var app = {
         disconnectButton.dataset.deviceId = deviceId;
 		app.writeWithoutResponse = true;
     },
+	onConnect: function(peripheral) {
+        alert("OK"); 
+    }
     determineWriteType: function() {
         app.writeWithoutResponse = true;
     },
