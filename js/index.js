@@ -55,8 +55,8 @@ var app = {
         deviceList.appendChild(listItem);
     },
     connect: function(e) {
-        var deviceId = e.target.dataset.deviceId,
 		alert('a');
+        var deviceId = e.target.dataset.deviceId,
             onConnect = function(peripheral) {
                 app.determineWriteType(peripheral);
 
@@ -65,8 +65,8 @@ var app = {
                 ble.startNotification(deviceId, bluefruit.serviceUUID, bluefruit.rxCharacteristic, app.onData, app.onError);
                 sendButton.dataset.deviceId = deviceId;
                 disconnectButton.dataset.deviceId = deviceId;
-                //resultDiv.innerHTML = "";
-                //app.showDetailPage();
+                resultDiv.innerHTML = "";
+                app.showDetailPage();
             };
 
         ble.connect(deviceId, onConnect, app.onError);
