@@ -66,7 +66,7 @@ var app = {
     },
 	onConnect: function(peripheral) {
         alert("OK"); 
-    }
+    },
     determineWriteType: function() {
         app.writeWithoutResponse = true;
     },
