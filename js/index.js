@@ -57,7 +57,7 @@ var app = {
     connect: function(e) {
 		alert('a');
 		var deviceId = "D4:36:39:5E:28:43";
-        ble.connect(deviceId, onConnect, app.onError);
+        ble.connect(deviceId, app.onConnect, app.onError);
 		alert('b');
         ble.startNotification(deviceId, bluefruit.serviceUUID, bluefruit.rxCharacteristic, app.onData, app.onError);
         sendButton.dataset.deviceId = deviceId;
