@@ -57,8 +57,8 @@ var app = {
     connect: function(e) {
 		alert('a');
         var deviceId = e.target.dataset.deviceId,
-            onConnect = function(peripheral) {
-                app.determineWriteType(peripheral);
+            onConnect = function() {
+                app.determineWriteType();
 
                 // subscribe for incoming data
 				alert('b');
@@ -71,22 +71,8 @@ var app = {
 
         ble.connect(deviceId, onConnect, app.onError);
     },
-    determineWriteType: function(peripheral) {
-        // Adafruit nRF8001 breakout uses WriteWithoutResponse for the TX characteristic
-        // Newer Bluefruit devices use Write Request for the TX characteristic
-
-        var characteristic = peripheral.characteristics.filter(function(element) {
-            if (element.characteristic.toLowerCase() === bluefruit.txCharacteristic) {
-                return element;
-            }
-        })[0];
-
-        if (characteristic.properties.indexOf('WriteWithoutResponse') > -1) {
-            app.writeWithoutResponse = true;
-        } else {
-            app.writeWithoutResponse = true;
-        }
-
+    determineWriteType: function() {
+        app.writeWithoutResponse = true;
     },
     onData: function(data) { // data received from Arduino
 		messageOutput.value = bytesToString(data);
