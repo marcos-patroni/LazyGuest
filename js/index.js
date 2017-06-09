@@ -62,7 +62,7 @@ var app = {
         ble.startNotification(deviceId, bluefruit.serviceUUID, bluefruit.rxCharacteristic, app.onData, app.onError);
         sendButton.dataset.deviceId = deviceId;
         disconnectButton.dataset.deviceId = deviceId;
-		app.writeWithoutResponse = true;
+		app.writeWithoutResponse = false;
     },
 	onConnect: function(peripheral) {
         alert("OK"); 
