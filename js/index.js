@@ -56,15 +56,17 @@ var app = {
     },
     connect: function(e) {
         var deviceId = e.target.dataset.deviceId,
+		alert('a');
             onConnect = function(peripheral) {
                 app.determineWriteType(peripheral);
 
                 // subscribe for incoming data
+				alert('b');
                 ble.startNotification(deviceId, bluefruit.serviceUUID, bluefruit.rxCharacteristic, app.onData, app.onError);
                 sendButton.dataset.deviceId = deviceId;
                 disconnectButton.dataset.deviceId = deviceId;
-                resultDiv.innerHTML = "";
-                app.showDetailPage();
+                //resultDiv.innerHTML = "";
+                //app.showDetailPage();
             };
 
         ble.connect(deviceId, onConnect, app.onError);
@@ -82,7 +84,7 @@ var app = {
         if (characteristic.properties.indexOf('WriteWithoutResponse') > -1) {
             app.writeWithoutResponse = true;
         } else {
-            app.writeWithoutResponse = false;
+            app.writeWithoutResponse = true;
         }
 
     },
